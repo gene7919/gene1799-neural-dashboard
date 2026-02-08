@@ -148,7 +148,7 @@ describe('NeuralDashboard', () => {
       expect(summary.metrics.integrationLevel).toBe(1);
     });
 
-    test('should update last update timestamp', () => {
+    test('should update last update timestamp', (done) => {
       const initialSummary = dashboard.getSummary();
       const initialTimestamp = initialSummary.lastUpdate;
       
@@ -156,6 +156,7 @@ describe('NeuralDashboard', () => {
         core.learn('key1', 'value1');
         const newSummary = dashboard.getSummary();
         expect(newSummary.lastUpdate).toBeGreaterThan(initialTimestamp);
+        done();
       }, 10);
     });
   });

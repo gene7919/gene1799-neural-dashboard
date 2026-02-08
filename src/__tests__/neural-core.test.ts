@@ -24,13 +24,14 @@ describe('NeuralCore', () => {
       expect(newState.iterations).toBe(initialState.iterations + 1);
     });
 
-    test('should update timestamp on learning', () => {
+    test('should update timestamp on learning', (done) => {
       const initialTimestamp = core.getState().timestamp;
       // Wait a tiny bit to ensure timestamp changes
       setTimeout(() => {
         core.learn('key1', 'value1');
         const newTimestamp = core.getState().timestamp;
         expect(newTimestamp).toBeGreaterThan(initialTimestamp);
+        done();
       }, 10);
     });
   });
